@@ -14,5 +14,5 @@ Just run pacman.rb
 # Environment
 
 Tested only on Windows 2003 and Internet Explorer 6 and 7. It should work on other
-versions of Windows and Internet Explorer. If it does not work, maybe changeing `7` in
+versions of Windows and Internet Explorer. If it does not work, maybe changing `7` in
 `7.times {tab(b)}` to a higher or lower number could help.
