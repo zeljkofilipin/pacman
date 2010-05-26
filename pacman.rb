@@ -2,7 +2,7 @@ def tab(browser)
   browser.send_keys "{TAB}"
 end
 def go(browser, direction)
-  puts direction
+  puts "pacmans: #{browser.div(:id => "pcm-li").divs.size}, direction: #{direction}"
   browser.send_keys "{#{direction.upcase}}"
 end
 
@@ -23,7 +23,7 @@ directions = {
   3 => "up",
   4 => "down"}
 
-1000.times do
+while browser.div(:id => "actor0").html !~ /LEFT: -62px/ or browser.div(:id => "pcm-li").divs.size > 0 do
   # get random number from 1 to 4
   direction = directions[1 + rand(4)]
 
