@@ -1,3 +1,19 @@
+def tab(b)
+  b.send_keys "{TAB}"
+end
+def right(b)
+  b.send_keys "{RIGHT}"
+end
+def left(b)
+  b.send_keys "{LEFT}"
+end
+def up(b)
+  b.send_keys "{UP}"
+end
+def down(b)
+  b.send_keys "{DOWN}"
+end
+
 require "watir"
 b = Watir::Browser.start "http://www.google.com/pacman/"
 
@@ -6,19 +22,13 @@ b.button(:value => "Insert Coin").click
 
 # move focus to the game
 sleep 1
-b.send_keys "{TAB}"
-b.send_keys "{TAB}"
-b.send_keys "{TAB}"
-b.send_keys "{TAB}"
-b.send_keys "{TAB}"
-b.send_keys "{TAB}"
-b.send_keys "{TAB}"
+7.times {tab(b)}
 
 # move in all directions
-b.send_keys "{RIGHT}"
+right(b)
 sleep 1
-b.send_keys "{LEFT}"
+left(b)
 sleep 1
-b.send_keys "{UP}"
+up(b)
 sleep 1
-b.send_keys "{DOWN}"
+down(b)
