@@ -1,0 +1,18 @@
+# About
+
+A simple script to control Google Pacman with Watir.
+
+# Prerequisites
+
+You have to have Ruby (http://www.ruby-lang.org/en/) and Watir
+(http://watir.com/) installed.
+
+# Run
+
+Just run pacman.rb
+
+# Environment
+
+Tested only on Windows 2003 and Internet Explorer 7. It should work on other
+versions of Internet Explorer. If it does not work, change `7` in
+`7.times {tab(b)}` to a higher or lower number.
