@@ -29,7 +29,4 @@ directions = {
 
   # go to random direction
   go(b, direction)
-  
-  # let pacman go for a second before changing the direction
-  sleep 1
 end
