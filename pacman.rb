@@ -24,7 +24,12 @@ directions = {
   4 => "down"}
 
 100.times do
+  # get random number from 1 to 4
   direction = directions[1 + rand(4)]
+
+  # go to random direction
   go(b, direction)
+  
+  # let pacman go for a second before changing the direction
   sleep 1
 end
