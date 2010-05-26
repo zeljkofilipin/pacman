@@ -23,7 +23,7 @@ directions = {
   3 => "up",
   4 => "down"}
 
-100.times do
+1000.times do
   # get random number from 1 to 4
   direction = directions[1 + rand(4)]
 
