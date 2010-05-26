@@ -1,17 +1,9 @@
 def tab(b)
   b.send_keys "{TAB}"
 end
-def right(b)
-  b.send_keys "{RIGHT}"
-end
-def left(b)
-  b.send_keys "{LEFT}"
-end
-def up(b)
-  b.send_keys "{UP}"
-end
-def down(b)
-  b.send_keys "{DOWN}"
+def go(b, direction)
+  puts direction
+  b.send_keys "{#{direction.upcase}}"
 end
 
 require "watir"
@@ -24,11 +16,15 @@ b.button(:value => "Insert Coin").click
 sleep 1
 7.times {tab(b)}
 
-# move in all directions
-right(b)
-sleep 1
-left(b)
-sleep 1
-up(b)
-sleep 1
-down(b)
+# move around randomly
+directions = {
+  1 => "right",
+  2 => "left",
+  3 => "up",
+  4 => "down"}
+
+100.times do
+  direction = directions[1 + rand(4)]
+  go(b, direction)
+  sleep 1
+end
