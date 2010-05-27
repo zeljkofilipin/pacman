@@ -2,7 +2,7 @@ def tab(browser)
   browser.send_keys "{TAB}"
 end
 def go(browser, direction)
-  puts "pacmans: #{browser.div(:id => "pcm-li").divs.size}, direction: #{direction}"
+  puts "pacmans: #{pacmans(browser)}, direction: #{direction}"
   browser.send_keys "{#{direction.upcase}}"
 end
 def pacmans(browser)
