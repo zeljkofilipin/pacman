@@ -5,6 +5,9 @@ def go(browser, direction)
   puts "pacmans: #{browser.div(:id => "pcm-li").divs.size}, direction: #{direction}"
   browser.send_keys "{#{direction.upcase}}"
 end
+def pacmans(browser)
+  browser.div(:id => "pcm-li").divs.size
+end
 
 require "rubygems"
 require "watir"
@@ -24,7 +27,7 @@ directions = {
   3 => "up",
   4 => "down"}
 
-while browser.div(:id => "actor0").html !~ /LEFT: -62px/ or browser.div(:id => "pcm-li").divs.size > 0 do
+while browser.div(:id => "actor0").html !~ /LEFT: -62px/ or pacmans(browser) > 0 do
   # get random number from 1 to 4
   direction = directions[1 + rand(4)]
 
