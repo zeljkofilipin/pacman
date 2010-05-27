@@ -8,6 +8,9 @@ end
 def pacmans(browser)
   browser.div(:id => "pcm-li").divs.size
 end
+def pacman_visible(browser)
+  browser.div(:id => "actor0").html !~ /LEFT: -62px/
+end
 
 require "rubygems"
 require "watir"
@@ -27,7 +30,7 @@ directions = {
   3 => "up",
   4 => "down"}
 
-while browser.div(:id => "actor0").html !~ /LEFT: -62px/ or pacmans(browser) > 0 do
+while pacman_visible(browser) or pacmans(browser) > 0 do
   # get random number from 1 to 4
   direction = directions[1 + rand(4)]
 
