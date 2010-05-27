@@ -6,6 +6,7 @@ def go(browser, direction)
   browser.send_keys "{#{direction.upcase}}"
 end
 
+require "rubygems"
 require "watir"
 browser = Watir::Browser.start "http://www.google.com/pacman/"
 
