@@ -29,7 +29,7 @@ patched.
 
 - log in as administrator (Ruby and Watir will probably not install correctly
   otherwise)
-- download Ruby from - download RubyInstaller
+- download RubyInstaller
   http://rubyforge.org/frs/download.php/69034/rubyinstaller-1.8.7-p249-rc2.exe
 - run it
 - leave all defaults except at `Installation Destination and Optional Tasks`
