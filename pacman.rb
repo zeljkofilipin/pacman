@@ -30,6 +30,8 @@ directions = {
   3 => "up",
   4 => "down"}
 
+# pacman is not visible when the game is over, but also when it dies, so do not
+# stop until there are not more pacmans left
 while pacman_visible(browser) or pacmans(browser) > 0 do
   # get random number from 1 to 4
   direction = directions[1 + rand(4)]
