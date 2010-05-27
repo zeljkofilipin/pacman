@@ -3,6 +3,10 @@
 A simple script to control Google Pacman with Watir. For now Pacman just
 randomly goes in all directions. Script ends after game over.
 
+# video
+
+http://www.youtube.com/watch?v=r9Y6RtKiTQs
+
 # prerequisites
 
 Ruby (http://www.ruby-lang.org/en/) and Watir (http://watir.com/).
@@ -19,6 +23,10 @@ Tested only on:
 It should work on other versions of Windows and Internet Explorer. If it does
 not work, maybe changing `7` in `7.times {tab(b)}` to a higher or lower number
 could help.
+
+# contact
+
+http://zeljkofilipin.com/contact/
 
 # installation
 
@@ -105,7 +113,3 @@ patched.
     ...
     pacmans: 0, direction: right
     pacmans: 0, direction: up
-
-# contact
-
-http://zeljkofilipin.com/contact/
