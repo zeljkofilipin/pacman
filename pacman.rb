@@ -6,7 +6,7 @@ def go(browser, direction)
   browser.send_keys "{#{direction.upcase}}"
 end
 def output(direction)
-  puts "#{direction}"
+  puts ">#{direction}"
 end
 def pacmans(browser)
   browser.div(:id => "pcm-li").divs.size
@@ -48,7 +48,7 @@ def even?(number)
   number % 2 == 0
 end
 def move_away_from_default_position(browser)
-  puts "moving away from default position"
+  puts "*moving away from default position"
 
   directions = {
   1 => "right",
@@ -95,37 +95,37 @@ while pacman_visible?(browser) or pacmans(browser) > 0 do
   previous_direction = directions[previous_direction_number]
 
   if direction_number == previous_direction_number
-    puts "already going #{direction}"
+    puts "-already going #{direction}"
     next
   end
   if even?(direction_number) == even?(previous_direction_number)
-    puts "will not go #{direction} because I am going #{previous_direction}"
+    puts "-will not go #{direction} because I am going #{previous_direction}"
     next
   end
 
   vertical = pacman_vertical_position(browser)
-  puts "at the top" if vertical == 4
-  puts "at the bottom" if vertical == 120
+  puts "!at the top" if vertical == 4
+  puts "!at the bottom" if vertical == 120
 
   if vertical == 120 and direction_number == 4
-    puts "already down"
+    puts "-already down"
     next
   end
   if vertical == 8 and direction_number == 2
-    puts "already up"
+    puts "-already up"
     next
   end
 
   horizontal = pacman_horizontal_position(browser)
-  puts "at the far left" if horizontal == 8
-  puts "at the far right" if horizontal == 448
+  puts "!at the far left" if horizontal == 8
+  puts "!at the far right" if horizontal == 448
   
   if horizontal == 8 and direction_number == 3
-    puts "already left"
+    puts "-already left"
     next
   end
   if horizontal == 448 and direction_number == 1
-    puts "already right"
+    puts "-already right"
     next
   end
 
@@ -136,4 +136,4 @@ while pacman_visible?(browser) or pacmans(browser) > 0 do
   go(browser, direction)
 end
 
-puts "score: #{score(browser)}"
+puts "=score: #{score(browser)}"
