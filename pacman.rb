@@ -53,6 +53,7 @@ def even?(number)
   number % 2 == 0
 end
 def move_away_from_default_position(browser)
+  go(browser, "left")
   go(browser, "up")
   go(browser, "left")
   go(browser, "up")
