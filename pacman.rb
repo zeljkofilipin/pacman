@@ -6,13 +6,27 @@ def go(browser, direction)
   browser.send_keys "{#{direction.upcase}}"
 end
 def output(browser, direction)
-  puts "pacmans: #{pacmans(browser)}, score: #{score(browser)}, direction: #{direction}"
+  puts "pacmans: #{pacmans(browser)}, score: #{score(browser)}, direction: #{direction}, position: #{pacman_position(browser)}"
 end
 def pacmans(browser)
   browser.div(:id => "pcm-li").divs.size
 end
 def pacman_visible?(browser)
-  browser.div(:id => "actor0").html !~ /LEFT: -62px/
+  pacman_html(browser) !~ /LEFT: -62px/
+end
+def pacman_position(browser)
+  "#{pacman_horizontal_position(browser)} #{pacman_vertical_position(browser)}"
+end
+# 8-120
+def pacman_vertical_position(browser)
+  pacman_html(browser).split("TOP: ")[1].split("px")[0].to_i
+end
+# 8-448
+def pacman_horizontal_position(browser)
+  pacman_html(browser).split("LEFT: ")[1].split("px")[0].to_i
+end
+def pacman_html(browser)
+  browser.div(:id => "actor0").html
 end
 def score(browser)
   score = []
