@@ -2,8 +2,11 @@ def tab(browser)
   browser.send_keys "{TAB}"
 end
 def go(browser, direction)
-  puts "pacmans: #{pacmans(browser)}, score: #{score(browser)}, direction: #{direction}"
+  output(browser, direction)
   browser.send_keys "{#{direction.upcase}}"
+end
+def output(browser, direction)
+  puts "pacmans: #{pacmans(browser)}, score: #{score(browser)}, direction: #{direction}"
 end
 def pacmans(browser)
   browser.div(:id => "pcm-li").divs.size
