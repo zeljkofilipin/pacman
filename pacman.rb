@@ -2,7 +2,7 @@ def tab(browser)
   browser.send_keys "{TAB}"
 end
 def go(browser, direction)
-  puts "pacmans: #{pacmans(browser)}, score digits: #{score_digits(browser)}, direction: #{direction}"
+  puts "pacmans: #{pacmans(browser)}, score: #{score(browser)}, direction: #{direction}"
   browser.send_keys "{#{direction.upcase}}"
 end
 def pacmans(browser)
@@ -11,16 +11,23 @@ end
 def pacman_visible(browser)
   browser.div(:id => "actor0").html !~ /LEFT: -62px/
 end
-def score_digits(browser)
-  digits = []
+def score(browser)
+  score = []
   for position in 0..9
-    digits << score_digit_visible?(browser, position)
+    score << digit(browser, position)
   end
-  digits.delete false
-  digits.size
+  score
 end
-def score_digit_visible?(browser, position)
-  browser.div(:id => "pcm-sc-1-#{position}").html !~ /LEFT: -62px/
+def digit(browser, position)
+  if digit_visible?(browser, position)
+  px = browser.div(:id => "pcm-sc-1-#{position}").html.split("LEFT: -")[1].split("px")[0]
+  (px.to_i - 12)/10
+  else
+    nil
+  end
+end
+def digit_visible?(browser, position)
+  browser.div(:id => "pcm-sc-1-#{position}").html !~ /TOP: -2px/
 end
 
 require "rubygems"
