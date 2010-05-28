@@ -6,7 +6,7 @@ def go(browser, direction)
   browser.send_keys "{#{direction.upcase}}"
 end
 def output(browser, direction)
-  puts "pacmans: #{pacmans(browser)}, score: #{score(browser)}, direction: #{direction}, position: #{pacman_position(browser)}"
+  puts "direction: #{direction}, position: #{pacman_position(browser)}"
 end
 def pacmans(browser)
   browser.div(:id => "pcm-li").divs.size
@@ -108,3 +108,5 @@ while pacman_visible?(browser) or pacmans(browser) > 0 do
   direction = directions[direction_number]
   go(browser, direction)
 end
+
+puts "score: #{score(browser)}"
