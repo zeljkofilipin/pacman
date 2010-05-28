@@ -2,6 +2,7 @@ def tab(browser)
   browser.send_keys "{TAB}"
 end
 def go(browser, direction)
+  output(direction)
   browser.send_keys "{#{direction.upcase}}"
 end
 def output(direction)
@@ -47,9 +48,19 @@ def even?(number)
   number % 2 == 0
 end
 def move_away_from_default_position(browser)
-  go(browser, "left")
+  puts "moving away from default position"
+
+  directions = {
+  1 => "right",
+  2 => "left"}
+
+  # get random number from 1 to 2
+  direction_number = 1 + rand(2)
+  direction = directions[direction_number]
+
+  go(browser, direction)
   go(browser, "up")
-  go(browser, "left")
+  go(browser, direction)
   go(browser, "up")
 end
 
@@ -118,7 +129,6 @@ while pacman_visible?(browser) or pacmans(browser) > 0 do
   previous_pacmans = lifes
 
   # go to random direction
-  output(direction)
   go(browser, direction)
 end
 
