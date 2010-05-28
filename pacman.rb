@@ -90,8 +90,16 @@ while pacman_visible?(browser) or pacmans(browser) > 0 do
   next if direction_number == previous_direction_number
   # do not move in the opposite direction of the current one
   next if even?(direction_number) == even?(previous_direction_number)
+
   # do not move down if already at the bottom
   next if pacman_vertical_position(browser) == 120 and direction_number == 4
+  # do not move up if already at the top
+  next if pacman_vertical_position(browser) == 8 and direction_number == 2
+
+  # do not move left if already at the far left
+  next if pacman_horizontal_position(browser) == 8 and direction_number == 3
+  # do not move right if already at the far right
+  next if pacman_horizontal_position(browser) == 448 and direction_number == 1
 
   previous_direction_number = direction_number
   previous_pacmans = pacmans(browser)
