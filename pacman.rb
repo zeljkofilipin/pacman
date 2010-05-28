@@ -23,14 +23,17 @@ def score(browser)
 end
 def digit(browser, position)
   if digit_visible?(browser, position)
-  px = browser.div(:id => "pcm-sc-1-#{position}").html.split("LEFT: -")[1].split("px")[0]
+  px = digit_html(browser, position).split("LEFT: -")[1].split("px")[0]
   (px.to_i - 12)/10
   else
     nil
   end
 end
 def digit_visible?(browser, position)
-  browser.div(:id => "pcm-sc-1-#{position}").html !~ /TOP: -2px/
+  digit_html(browser, position) !~ /TOP: -2px/
+end
+def digit_html(browser, position)
+  browser.div(:id => "pcm-sc-1-#{position}").html
 end
 
 require "rubygems"
