@@ -53,11 +53,10 @@ def even?(number)
   number % 2 == 0
 end
 def move_away_from_default_position(browser)
-  go(browser, "left")
+  go(browser, "right")
   go(browser, "up")
-  go(browser, "left")
+  go(browser, "right")
   go(browser, "up")
-  go(browser, "left")
 end
 
 require "rubygems"
@@ -87,20 +86,32 @@ while pacman_visible?(browser) or pacmans(browser) > 0 do
   # get random number from 1 to 4
   direction_number = 1 + rand(4)
 
-  # do not move in the same direction as the current one
-  next if direction_number == previous_direction_number
-  # do not move in the opposite direction of the current one
-  next if even?(direction_number) == even?(previous_direction_number)
+  if direction_number == previous_direction_number
+    puts "skipping move, the same direction as previous"
+    next
+  end
+  if even?(direction_number) == even?(previous_direction_number)
+    puts "skipping move, the opposite direction as previous"
+    next
+  end
 
-  # do not move down if already at the bottom
-  next if pacman_vertical_position(browser) == 120 and direction_number == 4
-  # do not move up if already at the top
-  next if pacman_vertical_position(browser) == 8 and direction_number == 2
+  if pacman_vertical_position(browser) == 120 and direction_number == 4
+    puts "not going down, already at the bottom"
+    next
+  end
+  if pacman_vertical_position(browser) == 8 and direction_number == 2
+    puts "not going up, already at the top"
+    next
+  end
 
-  # do not move left if already at the far left
-  next if pacman_horizontal_position(browser) == 8 and direction_number == 3
-  # do not move right if already at the far right
-  next if pacman_horizontal_position(browser) == 448 and direction_number == 1
+  if pacman_horizontal_position(browser) == 8 and direction_number == 3
+    puts "not going left, already at the far left"
+    next
+  end
+  if pacman_horizontal_position(browser) == 448 and direction_number == 1
+    puts "not going right, already at the far right"
+    next
+  end
 
   previous_direction_number = direction_number
   previous_pacmans = pacmans(browser)
