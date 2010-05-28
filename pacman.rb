@@ -84,6 +84,8 @@ while pacman_visible?(browser) or pacmans(browser) > 0 do
   # get random number from 1 to 4
   direction_number = 1 + rand(4)
 
+  # do not move in the same direction as the current one
+  next if direction_number == previous_direction_number
   # do not move in the opposite direction of the current one
   next if even?(direction_number) == even?(previous_direction_number)
   # do not move down if already at the bottom
