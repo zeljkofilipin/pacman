@@ -5,16 +5,13 @@ def go(browser, direction)
   browser.send_keys "{#{direction.upcase}}"
 end
 def output(browser, direction)
-  puts "#{direction}, #{pacman_position(browser)}"
+  puts "#{direction}"
 end
 def pacmans(browser)
   browser.div(:id => "pcm-li").divs.size
 end
 def pacman_visible?(browser)
   pacman_html(browser) !~ /LEFT: -62px/
-end
-def pacman_position(browser)
-  "x:#{pacman_horizontal_position(browser)}, y:#{pacman_vertical_position(browser)}"
 end
 # 8-120
 def pacman_vertical_position(browser)
