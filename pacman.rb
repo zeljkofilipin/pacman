@@ -4,7 +4,7 @@ end
 def go(browser, direction)
   browser.send_keys "{#{direction.upcase}}"
 end
-def output(browser, direction)
+def output(direction)
   puts "#{direction}"
 end
 def pacmans(browser)
@@ -112,7 +112,7 @@ while pacman_visible?(browser) or pacmans(browser) > 0 do
 
   # go to random direction
   direction = directions[direction_number]
-  output(browser, direction)
+  output(direction)
   go(browser, direction)
 end
 
