@@ -47,7 +47,6 @@ browser.button(:value => "Insert Coin").click
 sleep 1
 7.times {tab(browser)}
 
-# move around randomly
 directions = {
   1 => "right",
   2 => "left",
