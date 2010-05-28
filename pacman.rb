@@ -79,31 +79,33 @@ while pacman_visible?(browser) or pacmans(browser) > 0 do
 
   # get random number from 1 to 4
   direction_number = 1 + rand(4)
+  direction = directions[direction_number]
+  previous_direction = directions[previous_direction_number]
 
   if direction_number == previous_direction_number
-    puts "skipping move, the same direction as previous"
+    puts "already going #{direction}"
     next
   end
   if even?(direction_number) == even?(previous_direction_number)
-    puts "skipping move, the opposite direction as previous"
+    puts "will not go #{direction} because I am going #{previous_direction}"
     next
   end
 
   if pacman_vertical_position(browser) == 120 and direction_number == 4
-    puts "not going down, already at the bottom"
+    puts "already down"
     next
   end
   if pacman_vertical_position(browser) == 8 and direction_number == 2
-    puts "not going up, already at the top"
+    puts "already up"
     next
   end
 
   if pacman_horizontal_position(browser) == 8 and direction_number == 3
-    puts "not going left, already at the far left"
+    puts "already left"
     next
   end
   if pacman_horizontal_position(browser) == 448 and direction_number == 1
-    puts "not going right, already at the far right"
+    puts "already right"
     next
   end
 
@@ -111,7 +113,6 @@ while pacman_visible?(browser) or pacmans(browser) > 0 do
   previous_pacmans = pacmans(browser)
 
   # go to random direction
-  direction = directions[direction_number]
   output(direction)
   go(browser, direction)
 end
