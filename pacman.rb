@@ -52,6 +52,10 @@ end
 def even?(number)
   number % 2 == 0
 end
+def move_away_from_default_position(browser)
+  go(browser, "up")
+  go(browser, "left")
+end
 
 require "rubygems"
 require "watir"
@@ -70,10 +74,13 @@ directions = {
   3 => "left",
   4 => "down"}
 previous_direction_number = 0
+previous_pacmans = 3
 
 # pacman is not visible when the game is over, but also when it dies, so do not
 # stop until there are not more pacmans left
 while pacman_visible?(browser) or pacmans(browser) > 0 do
+  move_away_from_default_position(browser) if previous_pacmans > pacmans(browser)
+
   # get random number from 1 to 4
   direction_number = 1 + rand(4)
 
@@ -83,6 +90,7 @@ while pacman_visible?(browser) or pacmans(browser) > 0 do
   next if pacman_vertical_position(browser) == 120 and direction_number == 4
 
   previous_direction_number = direction_number
+  previous_pacmans = pacmans(browser)
 
   # go to random direction
   direction = directions[direction_number]
