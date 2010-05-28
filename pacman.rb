@@ -55,6 +55,8 @@ end
 def move_away_from_default_position(browser)
   go(browser, "up")
   go(browser, "left")
+  go(browser, "up")
+  go(browser, "left")
 end
 
 require "rubygems"
