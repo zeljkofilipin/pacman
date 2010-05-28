@@ -75,7 +75,8 @@ previous_pacmans = 3
 # pacman is not visible when the game is over, but also when it dies, so do not
 # stop until there are not more pacmans left
 while pacman_visible?(browser) or pacmans(browser) > 0 do
-  move_away_from_default_position(browser) if previous_pacmans > pacmans(browser)
+  lifes = pacmans(browser)
+  move_away_from_default_position(browser) if previous_pacmans > lifes
 
   # get random number from 1 to 4
   direction_number = 1 + rand(4)
@@ -91,26 +92,30 @@ while pacman_visible?(browser) or pacmans(browser) > 0 do
     next
   end
 
-  if pacman_vertical_position(browser) == 120 and direction_number == 4
+  vertical = pacman_vertical_position(browser)
+
+  if vertical == 120 and direction_number == 4
     puts "already down"
     next
   end
-  if pacman_vertical_position(browser) == 8 and direction_number == 2
+  if vertical == 8 and direction_number == 2
     puts "already up"
     next
   end
 
-  if pacman_horizontal_position(browser) == 8 and direction_number == 3
+  horizontal = pacman_horizontal_position(browser)
+  
+  if horizontal == 8 and direction_number == 3
     puts "already left"
     next
   end
-  if pacman_horizontal_position(browser) == 448 and direction_number == 1
+  if horizontal == 448 and direction_number == 1
     puts "already right"
     next
   end
 
   previous_direction_number = direction_number
-  previous_pacmans = pacmans(browser)
+  previous_pacmans = lifes
 
   # go to random direction
   output(direction)
