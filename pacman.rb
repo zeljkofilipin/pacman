@@ -53,9 +53,9 @@ def even?(number)
   number % 2 == 0
 end
 def move_away_from_default_position(browser)
-  go(browser, "right")
+  go(browser, "left")
   go(browser, "up")
-  go(browser, "right")
+  go(browser, "left")
   go(browser, "up")
 end
 
