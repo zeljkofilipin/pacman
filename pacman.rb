@@ -77,9 +77,11 @@ while pacman_visible?(browser) or pacmans(browser) > 0 do
   # get random number from 1 to 4
   direction_number = 1 + rand(4)
 
-  # decide if you will go in that direction
+  # do not move in the opposite direction of the current one
   next if even?(direction_number) == even?(previous_direction_number)
+  # do not move down if already at the bottom
   next if pacman_vertical_position(browser) == 120 and direction_number == 4
+
   previous_direction_number = direction_number
 
   # go to random direction
