@@ -49,6 +49,9 @@ end
 def digit_html(browser, position)
   browser.div(:id => "pcm-sc-1-#{position}").html
 end
+def even?(number)
+  number % 2 == 0
+end
 
 require "rubygems"
 require "watir"
@@ -63,16 +66,22 @@ sleep 1
 
 directions = {
   1 => "right",
-  2 => "left",
-  3 => "up",
+  2 => "up",
+  3 => "left",
   4 => "down"}
+previous_direction_number = 0
 
 # pacman is not visible when the game is over, but also when it dies, so do not
 # stop until there are not more pacmans left
 while pacman_visible?(browser) or pacmans(browser) > 0 do
   # get random number from 1 to 4
-  direction = directions[1 + rand(4)]
+  direction_number = 1 + rand(4)
+
+  # decide if you will go in that direction
+  next if even?(direction_number) == even?(previous_direction_number)
+  previous_direction_number = direction_number
 
   # go to random direction
+  direction = directions[direction_number]
   go(browser, direction)
 end
