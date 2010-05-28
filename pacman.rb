@@ -104,6 +104,8 @@ while pacman_visible?(browser) or pacmans(browser) > 0 do
   end
 
   vertical = pacman_vertical_position(browser)
+  puts "at the top" if vertical == 4
+  puts "at the bottom" if vertical == 120
 
   if vertical == 120 and direction_number == 4
     puts "already down"
@@ -115,6 +117,8 @@ while pacman_visible?(browser) or pacmans(browser) > 0 do
   end
 
   horizontal = pacman_horizontal_position(browser)
+  puts "at the far left" if horizontal == 8
+  puts "at the far right" if horizontal == 448
   
   if horizontal == 8 and direction_number == 3
     puts "already left"
