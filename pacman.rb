@@ -139,10 +139,14 @@ while true do
       next
     end
 
-    if direction_number == previous_direction_number
+    if direction == previous_direction
       puts "-already going #{direction}"
       next
     end
+
+    # to grab more pills, do not go in opposite direction of the current one
+    # horizontal directions are odd numbers, vertical are even
+    # check if previos and current direction are both odd or even
     if even?(direction_number) == even?(previous_direction_number)
       puts "-will not go #{direction} because I am going #{previous_direction}"
       next
@@ -150,7 +154,7 @@ while true do
 
     previous_direction_number = direction_number
 
-    # go to random direction
+    # go to direction
     go(browser, direction)
   end
 
