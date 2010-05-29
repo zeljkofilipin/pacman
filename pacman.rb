@@ -63,8 +63,8 @@ def move_away_from_default_position(browser)
   go(browser, direction)
   go(browser, "up")
 end
-def at_default_positions?(browser)
-  (pacman_horizontal_position(browser) == 272 or pacman_horizontal_position(browser) == 296) and pacman_vertical_position(browser) == 120
+def at_default_positions?(horizontal, vertical)
+  (horizontal == 272 or horizontal == 296) and vertical == 120
 end
 
 require "rubygems"
@@ -93,14 +93,16 @@ while true do
   # pacman is not visible when the game is over, but also when it dies, so do not
   # stop until there are not more pacmans left
   while pacman_visible?(browser) or pacmans(browser) > 0 do
-    move_away_from_default_position(browser) if at_default_positions?(browser)
+    horizontal = pacman_horizontal_position(browser)
+    vertical = pacman_vertical_position(browser)
+
+    move_away_from_default_position(browser) if at_default_positions?(horizontal, vertical)
 
     # get random number from 1 to 4
     direction_number = 1 + rand(4)
     direction = directions[direction_number]
     previous_direction = directions[previous_direction_number]
 
-    vertical = pacman_vertical_position(browser)
     puts "!at the top" if vertical == 4
     puts "!at the bottom" if vertical == 120
 
@@ -113,7 +115,6 @@ while true do
       next
     end
 
-    horizontal = pacman_horizontal_position(browser)
     puts "!at the far left" if horizontal == 8
     puts "!at the far right" if horizontal == 448
 
