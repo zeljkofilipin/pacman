@@ -78,7 +78,18 @@ end
 def at_far_right?(horizontal)
   horizontal == 448
 end
-
+def move_away_from_corner(browser, directions)
+  puts "*moving away from corner"
+  directions.each do |direction_number, direction|
+    go(browser, direction)
+  end
+end
+def in_the_corner?(horizontal, vertical)
+  (at_top?(vertical) and at_far_left?(horizontal)) or
+    (at_top?(vertical) and at_far_right?(horizontal)) or
+    (at_bottom?(vertical) and at_far_left?(horizontal)) or
+    (at_bottom?(vertical) and at_far_right?(horizontal))
+end
 
 require "rubygems"
 require "watir"
@@ -115,6 +126,8 @@ while true do
     puts "!at the bottom" if at_bottom?(vertical)
     puts "!at the far left" if at_far_left?(horizontal)
     puts "!at the far right" if at_far_right?(horizontal)
+
+    move_away_from_corner(browser, directions) if in_the_corner?(horizontal, vertical)
 
     # get random number from 1 to 4
     direction_number = 1 + rand(4)
