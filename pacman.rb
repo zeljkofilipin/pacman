@@ -163,11 +163,6 @@ while true do
 
     move_away_from_default_position(browser) if at_default_positions?(horizontal, vertical)
 
-    puts "!at the top" if at_top?(vertical)
-    puts "!at the bottom" if at_bottom?(vertical)
-    puts "!at the far left" if at_far_left?(horizontal)
-    puts "!at the far right" if at_far_right?(horizontal)
-
     move_away_from_corner(browser, horizontal, vertical) if in_the_corner?(horizontal, vertical)
 
     # get random number from 1 to 4
@@ -175,37 +170,18 @@ while true do
     direction = directions[direction_number]
     previous_direction = directions[previous_direction_number]
 
-    if at_bottom?(vertical) and direction == "down"
-      puts "-already down"
-      next
-    end
-    if at_top?(vertical) and direction == "up"
-      puts "-already up"
-      next
-    end
-
-    if at_far_left?(horizontal) and direction == "left"
-      puts "-already left"
-      next
-    end
-    if at_far_right?(horizontal) and direction == "right"
-      puts "-already right"
-      next
-    end
+    next if at_bottom?(vertical) and direction == "down"
+    next if at_top?(vertical) and direction == "up"
+    next if at_far_left?(horizontal) and direction == "left"
+    next if at_far_right?(horizontal) and direction == "right"
 
     if moving?(previous_horizontal, horizontal, previous_vertical, vertical)
-      if direction == previous_direction
-        puts "-already going #{direction}"
-        next
-      end
+      next if direction == previous_direction
 
       # to grab more pills, do not go in opposite direction of the current one
       # horizontal directions are odd numbers, vertical are even
       # check if previos and current direction are both odd or even
-      if even?(direction_number) == even?(previous_direction_number)
-        puts "-will not go #{direction} because I am going #{previous_direction}"
-        next
-      end
+      next if even?(direction_number) == even?(previous_direction_number)
     else
       puts "!not moving"
     end
