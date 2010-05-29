@@ -64,10 +64,10 @@ def move_away_from_default_position(browser)
   go(browser, "up")
 end
 def at_default_positions?(horizontal, vertical)
-  (horizontal == 272 or horizontal == 296) and vertical == 120
+  (horizontal == 272 or horizontal == 296) and at_bottom?(vertical)
 end
 def at_top?(vertical)
-  vertical == 4
+  vertical == 8
 end
 def at_bottom?(vertical)
   vertical == 120
@@ -121,20 +121,20 @@ while true do
     direction = directions[direction_number]
     previous_direction = directions[previous_direction_number]
 
-    if vertical == 120 and direction_number == 4
+    if at_bottom?(vertical) and direction == "down"
       puts "-already down"
       next
     end
-    if vertical == 8 and direction_number == 2
+    if at_top?(vertical) and direction == "up"
       puts "-already up"
       next
     end
 
-    if horizontal == 8 and direction_number == 3
+    if at_far_left?(horizontal) and direction == "left"
       puts "-already left"
       next
     end
-    if horizontal == 448 and direction_number == 1
+    if at_far_right?(horizontal) and direction == "right"
       puts "-already right"
       next
     end
