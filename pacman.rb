@@ -68,6 +68,9 @@ require "rubygems"
 require "watir"
 
 while true do
+  puts "========================="
+  puts "new game"
+  puts "========================="
   browser = Watir::Browser.start "http://www.google.com/pacman/"
 
   # start the game
@@ -138,7 +141,9 @@ while true do
     go(browser, direction)
   end
 
-  puts "=score: #{score(browser)}"
+  puts "========================="
+  puts "score: #{score(browser)}"
+  puts "========================="
 
   browser.close
 end
