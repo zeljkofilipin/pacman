@@ -54,14 +54,17 @@ def move_away_from_default_position(browser)
   1 => "right",
   2 => "left"}
 
-  # get random number from 1 to 2
-  direction_number = 1 + rand(2)
+  direction_number = return_1_or_2
   direction = directions[direction_number]
 
   go(browser, direction)
   go(browser, "up")
   go(browser, direction)
   go(browser, "up")
+end
+# get random number from 1 to 2
+def return_1_or_2
+  1 + rand(2)
 end
 def at_default_positions?(horizontal, vertical)
   (horizontal == 272 or horizontal == 296) and at_bottom?(vertical)
@@ -78,17 +81,48 @@ end
 def at_far_right?(horizontal)
   horizontal == 448
 end
-def move_away_from_corner(browser, directions)
+def move_away_from_corner(browser, horizontal, vertical)
   puts "*moving away from corner"
-  directions.each do |direction_number, direction|
-    go(browser, direction)
+
+  direction_number = return_1_or_2
+
+  if at_top_left?(horizontal, vertical)
+    puts "!top left"
+    directions = {1 => "right", 2 => "down"}
   end
+  if at_top_right?(horizontal, vertical)
+    puts "!top right"
+    directions = {1 => "left",  2 => "down"}
+  end
+  if at_bottom_left?(horizontal, vertical)
+    puts "!bottom left"
+    directions = {1 => "right", 2 => "up"}
+  end
+  if at_bottom_right?(horizontal, vertical)
+    puts "!bottom right"
+    directions = {1 => "left",  2 => "up"}
+  end
+
+  direction = directions[direction_number]
+  go(browser, direction)
 end
 def in_the_corner?(horizontal, vertical)
-  (at_top?(vertical) and at_far_left?(horizontal)) or
-    (at_top?(vertical) and at_far_right?(horizontal)) or
-    (at_bottom?(vertical) and at_far_left?(horizontal)) or
-    (at_bottom?(vertical) and at_far_right?(horizontal))
+  at_top_left?(horizontal, vertical) or
+    at_top_right?(horizontal, vertical) or
+    at_bottom_left?(horizontal, vertical) or
+    at_bottom_right?(horizontal, vertical)
+end
+def at_top_left?(horizontal, vertical)
+  at_top?(vertical) and at_far_left?(horizontal)
+end
+def at_top_right?(horizontal, vertical)
+  at_top?(vertical) and at_far_right?(horizontal)
+end
+def at_bottom_left?(horizontal, vertical)
+  at_bottom?(vertical) and at_far_left?(horizontal)
+end
+def at_bottom_right?(horizontal, vertical)
+  at_bottom?(vertical) and at_far_right?(horizontal)
 end
 def moving?(previous_horizontal, horizontal, previous_vertical, vertical)
   (previous_horizontal != horizontal) or (previous_vertical != vertical)
@@ -134,7 +168,7 @@ while true do
     puts "!at the far left" if at_far_left?(horizontal)
     puts "!at the far right" if at_far_right?(horizontal)
 
-    move_away_from_corner(browser, directions) if in_the_corner?(horizontal, vertical)
+    move_away_from_corner(browser, horizontal, vertical) if in_the_corner?(horizontal, vertical)
 
     # get random number from 1 to 4
     direction_number = 1 + rand(4)
