@@ -90,6 +90,9 @@ def in_the_corner?(horizontal, vertical)
     (at_bottom?(vertical) and at_far_left?(horizontal)) or
     (at_bottom?(vertical) and at_far_right?(horizontal))
 end
+def moving?(previous_horizontal, horizontal, previous_vertical, vertical)
+  (previous_horizontal != horizontal) or (previous_vertical != vertical)
+end
 
 require "rubygems"
 require "watir"
@@ -102,9 +105,9 @@ while true do
 
   # start the game
   browser.button(:value => "Insert Coin").click
+  sleep 1
 
   # move focus to the game
-  sleep 1
   7.times {tab(browser)}
 
   directions = {
@@ -112,7 +115,11 @@ while true do
     2 => "up",
     3 => "left",
     4 => "down"}
+  
+  # initialize fake stuff from previous step (that does not exist yet)
   previous_direction_number = 0
+  previous_horizontal = 0
+  previous_vertical = 0
 
   # pacman is not visible when the game is over, but also when it dies, so do not
   # stop until there are not more pacmans left
@@ -152,19 +159,26 @@ while true do
       next
     end
 
-    if direction == previous_direction
-      puts "-already going #{direction}"
-      next
+    if moving?(previous_horizontal, horizontal, previous_vertical, vertical)
+      if direction == previous_direction
+        puts "-already going #{direction}"
+        next
+      end
+
+      # to grab more pills, do not go in opposite direction of the current one
+      # horizontal directions are odd numbers, vertical are even
+      # check if previos and current direction are both odd or even
+      if even?(direction_number) == even?(previous_direction_number)
+        puts "-will not go #{direction} because I am going #{previous_direction}"
+        next
+      end
+    else
+      puts "!not moving"
     end
 
-    # to grab more pills, do not go in opposite direction of the current one
-    # horizontal directions are odd numbers, vertical are even
-    # check if previos and current direction are both odd or even
-    if even?(direction_number) == even?(previous_direction_number)
-      puts "-will not go #{direction} because I am going #{previous_direction}"
-      next
-    end
-
+    # remember stuff from previous step
+    previous_horizontal = horizontal
+    previous_vertical = vertical
     previous_direction_number = direction_number
 
     # go to direction
