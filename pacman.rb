@@ -66,6 +66,19 @@ end
 def at_default_positions?(horizontal, vertical)
   (horizontal == 272 or horizontal == 296) and vertical == 120
 end
+def at_top?(vertical)
+  vertical == 4
+end
+def at_bottom?(vertical)
+  vertical == 120
+end
+def at_far_left?(horizontal)
+  horizontal == 8
+end
+def at_far_right?(horizontal)
+  horizontal == 448
+end
+
 
 require "rubygems"
 require "watir"
@@ -98,13 +111,15 @@ while true do
 
     move_away_from_default_position(browser) if at_default_positions?(horizontal, vertical)
 
+    puts "!at the top" if at_top?(vertical)
+    puts "!at the bottom" if at_bottom?(vertical)
+    puts "!at the far left" if at_far_left?(horizontal)
+    puts "!at the far right" if at_far_right?(horizontal)
+
     # get random number from 1 to 4
     direction_number = 1 + rand(4)
     direction = directions[direction_number]
     previous_direction = directions[previous_direction_number]
-
-    puts "!at the top" if vertical == 4
-    puts "!at the bottom" if vertical == 120
 
     if vertical == 120 and direction_number == 4
       puts "-already down"
@@ -114,9 +129,6 @@ while true do
       puts "-already up"
       next
     end
-
-    puts "!at the far left" if horizontal == 8
-    puts "!at the far right" if horizontal == 448
 
     if horizontal == 8 and direction_number == 3
       puts "-already left"
