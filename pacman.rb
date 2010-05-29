@@ -66,74 +66,79 @@ end
 
 require "rubygems"
 require "watir"
-browser = Watir::Browser.start "http://www.google.com/pacman/"
 
-# start the game
-browser.button(:value => "Insert Coin").click
+while true do
+  browser = Watir::Browser.start "http://www.google.com/pacman/"
 
-# move focus to the game
-sleep 1
-7.times {tab(browser)}
+  # start the game
+  browser.button(:value => "Insert Coin").click
 
-directions = {
-  1 => "right",
-  2 => "up",
-  3 => "left",
-  4 => "down"}
-previous_direction_number = 0
-previous_pacmans = 3
+  # move focus to the game
+  sleep 1
+  7.times {tab(browser)}
 
-# pacman is not visible when the game is over, but also when it dies, so do not
-# stop until there are not more pacmans left
-while pacman_visible?(browser) or pacmans(browser) > 0 do
-  lifes = pacmans(browser)
-  move_away_from_default_position(browser) if previous_pacmans > lifes
+  directions = {
+    1 => "right",
+    2 => "up",
+    3 => "left",
+    4 => "down"}
+  previous_direction_number = 0
+  previous_pacmans = 3
 
-  # get random number from 1 to 4
-  direction_number = 1 + rand(4)
-  direction = directions[direction_number]
-  previous_direction = directions[previous_direction_number]
+  # pacman is not visible when the game is over, but also when it dies, so do not
+  # stop until there are not more pacmans left
+  while pacman_visible?(browser) or pacmans(browser) > 0 do
+    lifes = pacmans(browser)
+    move_away_from_default_position(browser) if previous_pacmans > lifes
 
-  if direction_number == previous_direction_number
-    puts "-already going #{direction}"
-    next
+    # get random number from 1 to 4
+    direction_number = 1 + rand(4)
+    direction = directions[direction_number]
+    previous_direction = directions[previous_direction_number]
+
+    if direction_number == previous_direction_number
+      puts "-already going #{direction}"
+      next
+    end
+    if even?(direction_number) == even?(previous_direction_number)
+      puts "-will not go #{direction} because I am going #{previous_direction}"
+      next
+    end
+
+    vertical = pacman_vertical_position(browser)
+    puts "!at the top" if vertical == 4
+    puts "!at the bottom" if vertical == 120
+
+    if vertical == 120 and direction_number == 4
+      puts "-already down"
+      next
+    end
+    if vertical == 8 and direction_number == 2
+      puts "-already up"
+      next
+    end
+
+    horizontal = pacman_horizontal_position(browser)
+    puts "!at the far left" if horizontal == 8
+    puts "!at the far right" if horizontal == 448
+
+    if horizontal == 8 and direction_number == 3
+      puts "-already left"
+      next
+    end
+    if horizontal == 448 and direction_number == 1
+      puts "-already right"
+      next
+    end
+
+    previous_direction_number = direction_number
+    previous_pacmans = lifes
+
+    # go to random direction
+    go(browser, direction)
   end
-  if even?(direction_number) == even?(previous_direction_number)
-    puts "-will not go #{direction} because I am going #{previous_direction}"
-    next
-  end
 
-  vertical = pacman_vertical_position(browser)
-  puts "!at the top" if vertical == 4
-  puts "!at the bottom" if vertical == 120
+  puts "=score: #{score(browser)}"
 
-  if vertical == 120 and direction_number == 4
-    puts "-already down"
-    next
-  end
-  if vertical == 8 and direction_number == 2
-    puts "-already up"
-    next
-  end
-
-  horizontal = pacman_horizontal_position(browser)
-  puts "!at the far left" if horizontal == 8
-  puts "!at the far right" if horizontal == 448
-  
-  if horizontal == 8 and direction_number == 3
-    puts "-already left"
-    next
-  end
-  if horizontal == 448 and direction_number == 1
-    puts "-already right"
-    next
-  end
-
-  previous_direction_number = direction_number
-  previous_pacmans = lifes
-
-  # go to random direction
-  go(browser, direction)
+  browser.close
 end
-
-puts "=score: #{score(browser)}"
