@@ -99,15 +99,6 @@ while true do
     direction = directions[direction_number]
     previous_direction = directions[previous_direction_number]
 
-    if direction_number == previous_direction_number
-      puts "-already going #{direction}"
-      next
-    end
-    if even?(direction_number) == even?(previous_direction_number)
-      puts "-will not go #{direction} because I am going #{previous_direction}"
-      next
-    end
-
     vertical = pacman_vertical_position(browser)
     puts "!at the top" if vertical == 4
     puts "!at the bottom" if vertical == 120
@@ -131,6 +122,15 @@ while true do
     end
     if horizontal == 448 and direction_number == 1
       puts "-already right"
+      next
+    end
+
+    if direction_number == previous_direction_number
+      puts "-already going #{direction}"
+      next
+    end
+    if even?(direction_number) == even?(previous_direction_number)
+      puts "-will not go #{direction} because I am going #{previous_direction}"
       next
     end
 
