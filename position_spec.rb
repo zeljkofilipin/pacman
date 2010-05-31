@@ -9,4 +9,7 @@ describe Position do
   it "should extract it's class from it's HTML" do
     @position.extract_class_from_html(@position_html).should == "pcm-d"
   end
+  it "should extract it's left position from it's HTML" do
+    @position.extract_position_from_html(@position_html, "LEFT: ").should == 8
+  end
 end
