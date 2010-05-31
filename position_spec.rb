@@ -14,4 +14,7 @@ describe Position do
   it "should extract it's top position from it's HTML" do
     @position.extract_position_from_html("TOP: ").should == 32
   end
+  it "should calculate it's id from it's left and top position" do
+    @position.calculate_id_from_positions.should == "pcm-d32-40"
+  end
 end
