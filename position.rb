@@ -1,10 +1,11 @@
 class Position
-  def initialize
+  def initialize(html)
+    @html = html
   end
-  def extract_class_from_html(position_html)
-    position_html.split("=")[1].split(" ")[0]
+  def extract_class_from_html
+    @html.split("=")[1].split(" ")[0]
   end
-  def extract_position_from_html(position_html, position)
-    position_html.split(position)[1].split("px")[0].to_i
+  def extract_position_from_html(position)
+    @html.split(position)[1].split("px")[0].to_i
   end
 end
