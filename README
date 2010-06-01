@@ -93,9 +93,9 @@ patched.
 
 ## download
 
-- downoad http://github.com/zeljkofilipin/pacman/raw/master/pacman.rb to
+- downoad http://github.com/zeljkofilipin/pacman/raw/master/pacman_random.rb to
   C:\Documents and Settings\Administrator
-- make sure the file name is pacman.rb
+- make sure the file name is pacman_random.rb
 
 # run
 
