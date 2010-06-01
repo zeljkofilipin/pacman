@@ -4,6 +4,7 @@ class Position
     @left = extract_position_from_html("LEFT: ")
     @top = extract_position_from_html("TOP: ")
     @id = calculate_id_from_positions
+    @class = extract_class_from_html
   end
   def extract_class_from_html
     @html.split("=")[1].split(" ")[0]
