@@ -1,11 +1,12 @@
 # about
 
-A simple script to control Google Pacman with Watir. For now Pacman just
-randomly goes in all directions. Script ends after game over.
+A simple Watir script to control Google Pacman. For now Pacman just
+randomly goes in all directions most of the time.
 
-# video
+# videos
 
 http://www.youtube.com/watch?v=KzuTKQgoY3U
+http://www.youtube.com/user/zeljkofilipin#p/u
 
 # prerequisites
 
@@ -20,9 +21,7 @@ Tested only on:
 - Windows XP
   - Internet Explorer 8
 
-It should work on other versions of Windows and Internet Explorer. If it does
-not work, maybe changing `7` in `7.times {tab(b)}` to a higher or lower number
-could help.
+It should work on other versions of Windows and Internet Explorer.
 
 # contact
 
@@ -103,13 +102,29 @@ patched.
 - open Command Prompt
 - navigate to C:\Documents and Settings\Administrator
 - type:
-    pacman.rb
+    pacman_random.rb
 - Internet Explorer should open, navigate to http://www.google.com/pacman/ and
-  Pacman should go randomly in all directions until game over.
-- output should be:
-    C:\Documents and Settings\Administrator>pacman.rb
-    pacmans: 2, direction: down
-    pacmans: 2, direction: left
+  Pacman should go randomly in all directions.
+- output should be something like this:
+
+    =========================
+    new game
+    =========================
+    *moving away from default position
+    >left
+    >up
+
     ...
-    pacmans: 0, direction: right
-    pacmans: 0, direction: up
+
+    >right
+    *moving away from corner
+    !top right
+    >left
+    >down
+    !not moving
+    >left
+    !not moving
+    >right
+    =========================
+    score: 1310
+    =========================
