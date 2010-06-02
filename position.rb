@@ -311,4 +311,10 @@ class Position
     moves << :down if @neighbours_type[3]
     moves
   end
+  def left
+    coordinate("LEFT: ")
+  end
+  def top
+    coordinate("TOP: ")
+  end
 end
