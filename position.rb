@@ -27,32 +27,20 @@ class Position < Stuff
       neighbors_name if @positions[neighbors_coordinates[neighbors_name]]
     end.compact
   end
-  def neighbors_empty_or_not
-    neighbors_coordinates.collect do |coordinates|
-      @positions[coordinates][1] if @positions[coordinates]
-    end
-  end
-  def nonempty_moves
-    moves = []
-    moves << :up if neighbors_empty_or_not[0] == false
-    moves << :left if neighbors_empty_or_not[1] == false
-    moves << :right if neighbors_empty_or_not[2] == false
-    moves << :down if neighbors_empty_or_not[3] == false
-    moves
-  end
-  def moves
-    moves = []
-    moves << :up if neighbors_type[0]
-    moves << :left if neighbors_type[1]
-    moves << :right if neighbors_type[2]
-    moves << :down if neighbors_type[3]
-    moves
-  end
   def eatable?(html)
     if html =~ /DISPLAY: none/
       false
     else
       true
+    end
+  end
+
+  # slow, touches browser
+  def eatable_neighbors
+    neighbors.collect do |neighbor|
+      position = Position.new(neighbors_coordinates[neighbor], "fake-klass")
+      require "watir"
+      neighbor if position.eatable?(Watir::Browser.attach(:url, //).div(:id => id).html)
     end
   end
 end

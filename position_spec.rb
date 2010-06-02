@@ -26,17 +26,8 @@ describe Position do
   it "should know it's neighbors" do
     @position.neighbors.should == [:top, :right]
   end
-  it "should know if it's neighbors are empty or not" do
-    pending
-    @position.neighbors_empty_or_not.should == [false, nil, false, nil]
-  end
-  it "should know it's moves" do
-    pending
-    @position.moves.should == [:up, :right]
-  end
-  it "should know it's nonempty moves" do
-    pending
-    @position.nonempty_moves.should == [:up, :right]
+  it "should know if it's neighbors are eatable" do
+    @position.eatable_neighbors.should == [:top, :right]
   end
   it "should know is it eatable" do
     html = "\r\n<DIV class=pcm-d id=pcm-d32-40 style=\"LEFT: 8px; TOP: 32px\"></DIV>"
