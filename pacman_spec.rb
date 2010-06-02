@@ -22,4 +22,7 @@ describe Pacman do
   it "should know it's moves" do
     @pacman.moves.should == [:up, :right]
   end
+  it "should know it's nonempty moves" do
+    @pacman.nonempty_moves.should == [:up]
+  end
 end

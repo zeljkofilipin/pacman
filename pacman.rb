@@ -27,6 +27,10 @@ class Pacman < Stuff
     require "position"
     @position = Position.new(coordinates, "pcm-d").moves
   end
+  def nonempty_moves
+    require "position"
+    @position = Position.new(coordinates, "pcm-d").nonempty_moves
+  end
 
   # no specs
   # touches the browser
@@ -34,10 +38,15 @@ class Pacman < Stuff
     if @debug
       puts "#{@step}:coordinates:#{coordinates.inspect}"
       puts "#{@step}:moves      :#{moves.inspect}"
+      puts "#{@step}:nonempty   :#{nonempty_moves.inspect}"
     end
     if moves != []
       new_random_number = random_number(moves.size)
-      direction = moves[new_random_number]
+      if nonempty_moves != []
+        direction = nonempty_moves[0]
+      else
+        direction = moves[new_random_number]
+      end
       if @debug
         puts "#{@step}:random     :#{new_random_number}"
         puts "#{@step}:direction  :#{direction}"
