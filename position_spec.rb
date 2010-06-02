@@ -5,19 +5,19 @@ describe Position do
     @position = Position.new([8, 32], "pcm-d")
   end
 
-  it "should extract it's class from it's HTML" do
+  it "should know it's class" do
     @position.klass.should == "pcm-d"
   end
-  it "should extract it's left coordinate from it's HTML" do
+  it "should know it's left coordinate" do
     @position.left.should == 8
   end
-  it "should extract it's top coordinate from it's HTML" do
+  it "should know it's top coordinate" do
     @position.top.should == 32
   end
-  it "should extract it's coordinates from it's HTML" do
+  it "should know it's coordinates" do
     @position.coordinates.should == [8, 32]
   end
-  it "should calculate it's id from it's left and top position" do
+  it "should know it's id" do
     @position.id.should == "pcm-d32-40"
   end
   it "should know it's neighbors coordinates" do
