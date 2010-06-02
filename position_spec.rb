@@ -17,7 +17,7 @@ describe Position do
   it "should calculate it's id from it's left and top position" do
     @position.calculate_id_from_positions.should == "pcm-d32-40"
   end
-  it "should know it's neighbors" do
-    @position.neighbours.should == [[8, 24], [0, 32], [16, 32], [8, 40]]
+  it "should know it's neighbors coordinates" do
+    @position.neighbours_coordinates.should == [[8, 24], [0, 32], [16, 32], [8, 40]]
   end
 end

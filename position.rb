@@ -15,4 +15,7 @@ class Position
   def calculate_id_from_positions
     "pcm-d#{@top}-#{@left + 32}"
   end
+  def neighbours_coordinates
+    [[@left, (@top - 8)], [(@left - 8), @top], [(@left + 8), @top], [@left, (@top + 8)]]
+  end
 end
