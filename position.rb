@@ -48,11 +48,11 @@ class Position < Stuff
     moves << :down if neighbors_type[3]
     moves
   end
-  def empty?(html)
+  def eatable?(html)
     if html =~ /DISPLAY: none/
-      true
-    else
       false
+    else
+      true
     end
   end
 end
