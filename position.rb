@@ -303,4 +303,12 @@ class Position
       @positions[coordinates]
     end
   end
+  def moves
+    moves = []
+    moves << :up if @neighbours_type[0]
+    moves << :left if @neighbours_type[1]
+    moves << :right if @neighbours_type[2]
+    moves << :down if @neighbours_type[3]
+    moves
+  end
 end

@@ -23,4 +23,7 @@ describe Position do
   it "should know it's neighbors type" do
     @position.neighbours_type.should == ["pcm-e", nil, "pcm-d", nil]
   end
+  it "should know it's moves" do
+     @position.moves.should == [:up, :right]
+  end
 end
