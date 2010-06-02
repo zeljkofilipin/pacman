@@ -12,5 +12,13 @@ class Game
 
     # move focus to the game (press tab 7 times)
     7.times {@browser.send_keys "{TAB}"}
+
+    # move pacman
+    require "pacman"
+    pacman = Pacman.new(@browser.div(:id => "actor0").html)
+    while true do
+      pacman.move(@browser)
+      pacman.new_coordinates(@browser)
+    end
   end
 end
