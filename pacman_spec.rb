@@ -20,9 +20,9 @@ describe Pacman do
     @pacman.on_position.should == true
   end
   it "should know it's moves" do
-    @pacman.moves.should == [:up, :right]
+    @pacman.moves.should == [:up]
   end
-  it "should know it's nonempty moves" do
-    @pacman.nonempty_moves.should == [:up]
+  it "should know it's yummy moves" do
+    @pacman.yummy_moves.should == [:up]
   end
 end

@@ -25,11 +25,11 @@ class Pacman < Stuff
   end
   def moves
     require "position"
-    @position = Position.new(coordinates, "pcm-d").moves
+    @position = Position.new(coordinates, "fake-klass").neighbors
   end
-  def nonempty_moves
+  def yummy_moves
     require "position"
-    @position = Position.new(coordinates, "pcm-d").nonempty_moves
+    @position = Position.new(coordinates, "fake-klass").eatable_neighbors
   end
 
   # no specs
@@ -38,19 +38,21 @@ class Pacman < Stuff
     if @debug
       puts "#{@step}:coordinates:#{coordinates.inspect}"
       puts "#{@step}:moves      :#{moves.inspect}"
-      puts "#{@step}:nonempty   :#{nonempty_moves.inspect}"
+      puts "#{@step}:yummy moves:#{yummy_moves.inspect}"
     end
+    
+    # there will be no moves if you are not exactly on a position
     if moves != []
-      new_random_number = random_number(moves.size)
-      if nonempty_moves != []
-        direction = nonempty_moves[0]
+      if yummy_moves != []
+        direction = yummy_moves[0]
       else
+        new_random_number = random_number(moves.size)
         direction = moves[new_random_number]
+        puts "#{@step}:random     :#{new_random_number}" if @debug
       end
-      if @debug
-        puts "#{@step}:random     :#{new_random_number}"
-        puts "#{@step}:direction  :#{direction}"
-      end
+      puts "#{@step}:direction  :#{direction.inspect}" if @debug
+
+      # move!
       browser.send_keys "{#{direction.to_s.upcase}}"
     end
     if @debug
