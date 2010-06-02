@@ -24,7 +24,7 @@ describe Position do
     @position.neighbors_coordinates.should == {:top => [8, 24], :left => [0, 32], :right => [16, 32], :down => [8, 40]}
   end
   it "should know it's neighbors" do
-    @position.neighbors.should == {:top => "pcm-e", :right => "pcm-d"}
+    @position.neighbors.should == [:top, :right]
   end
   it "should know if it's neighbors are empty or not" do
     pending

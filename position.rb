@@ -23,11 +23,9 @@ class Position < Stuff
     {:top => [left, (top - 8)], :left => [(left - 8), top], :right => [(left + 8), top], :down => [left, (top + 8)]}
   end
   def neighbors
-    neighbors = {}
-    @neighbors_names.each do |neighbors_name|
-      neighbors[neighbors_name] = @positions[neighbors_coordinates[neighbors_name]] if @positions[neighbors_coordinates[neighbors_name]]
-    end
-    neighbors
+    @neighbors_names.collect do |neighbors_name|
+      neighbors_name if @positions[neighbors_coordinates[neighbors_name]]
+    end.compact
   end
   def neighbors_empty_or_not
     neighbors_coordinates.collect do |coordinates|
