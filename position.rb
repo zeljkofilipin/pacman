@@ -37,10 +37,12 @@ class Position < Stuff
 
   # slow, touches browser
   def eatable_neighbors
-    neighbors.collect do |neighbor|
+    eatable = []
+    neighbors.each do |neighbor|
       position = Position.new(neighbors_coordinates[neighbor], "fake-klass")
       require "watir"
-      neighbor if position.eatable?($browser.div(:id => position.id).html)
+      eatable << neighbor if position.eatable?($browser.div(:id => position.id).html)
     end
+    eatable
   end
 end

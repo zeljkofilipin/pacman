@@ -26,14 +26,23 @@ describe Position do
   it "should know it's neighbors" do
     @position.neighbors.should == [:up, :right]
   end
-  it "should know if it's neighbors are eatable" do
-    @position.eatable_neighbors.should == [:up, :right]
-  end
   it "should know is it eatable" do
     html = "\r\n<DIV class=pcm-d id=pcm-d32-40 style=\"LEFT: 8px; TOP: 32px\"></DIV>"
     @position.eatable?(html).should == true
 
     html = "\r\n<DIV class=pcm-d id=pcm-d120-304 style=\"DISPLAY: none; LEFT: 272px; TOP: 120px\"></DIV>"
     @position.eatable?(html).should == false
+  end
+
+  # slow, requires browser to be opened and the game started
+  it "should know if it's neighbors are eatable" do
+    require "watir"
+    $browser = Watir::Browser.attach(:url, //)
+
+    position = Position.new([8, 32], "pcm-d")
+    position.eatable_neighbors.should == [:up, :right]
+
+    position = Position.new([272, 104], "pcm-d")
+    position.eatable_neighbors.should == [:left]
   end
 end
