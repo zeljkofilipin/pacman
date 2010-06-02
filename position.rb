@@ -31,6 +31,14 @@ class Position < Stuff
       @positions[coordinates][1] if @positions[coordinates]
     end
   end
+  def nonempty_moves
+    moves = []
+    moves << :up if neighbours_empty_or_not[0] == false
+    moves << :left if neighbours_empty_or_not[1] == false
+    moves << :right if neighbours_empty_or_not[2] == false
+    moves << :down if neighbours_empty_or_not[3] == false
+    moves
+  end
   def moves
     moves = []
     moves << :up if neighbours_type[0]
