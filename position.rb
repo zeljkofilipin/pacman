@@ -22,11 +22,10 @@ class Position < Stuff
     [[left, (top - 8)], [(left - 8), top], [(left + 8), top], [left, (top + 8)]]
   end
   def neighbors
-    neighbors = {}
-    neighbors_coordinates.each do |coordinates|
-      neighbors[coordinates] = @positions[coordinates]
-    end
-    neighbors
+    {:top => @positions[neighbors_coordinates[0]],
+      :left => @positions[neighbors_coordinates[1]],
+      :right => @positions[neighbors_coordinates[2]],
+      :down => @positions[neighbors_coordinates[3]]}
   end
   def neighbors_empty_or_not
     neighbors_coordinates.collect do |coordinates|
