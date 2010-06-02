@@ -1,6 +1,5 @@
 class Stuff
-  def initialize(html)
-    @html = html
+  def initialize
     @positions =
       {[8, 8] => 'pcm-d',
       [16, 8] => 'pcm-d',
@@ -278,17 +277,5 @@ class Stuff
       [440, 120] => 'pcm-d',
       [448, 120] => 'pcm-e',
       [280, 80] => 'pcm-f'}
-  end
-  def coordinate(position)
-    @html.split(position)[1].split("px")[0].to_i
-  end
-  def left
-    coordinate("LEFT: ")
-  end
-  def top
-    coordinate("TOP: ")
-  end
-  def coordinates
-    [left, top]
   end
 end
