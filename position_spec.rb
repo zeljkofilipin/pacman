@@ -29,4 +29,11 @@ describe Position do
   it "should know it's moves" do
      @position.moves.should == [:up, :right]
   end
+  it "should know is it empty" do
+    html = "\r\n<DIV class=pcm-d id=pcm-d32-40 style=\"LEFT: 8px; TOP: 32px\"></DIV>"
+    @position.empty?(html).should == false
+
+    html = "\r\n<DIV class=pcm-d id=pcm-d120-304 style=\"DISPLAY: none; LEFT: 272px; TOP: 120px\"></DIV>"
+    @position.empty?(html).should == true
+  end
 end

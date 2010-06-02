@@ -34,4 +34,11 @@ class Position < Stuff
     moves << :down if neighbours_type[3]
     moves
   end
+  def empty?(html)
+    if html =~ /DISPLAY: none/
+      true
+    else
+      false
+    end
+  end
 end
