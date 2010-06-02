@@ -20,4 +20,8 @@ class Pacman < Stuff
   def on_position
     true if @positions[coordinates]
   end
+  def moves
+    require "position"
+    @position = Position.new(coordinates, "pcm-d").moves
+  end
 end
