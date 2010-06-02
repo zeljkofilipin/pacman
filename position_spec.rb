@@ -8,10 +8,10 @@ describe Position do
   it "should extract it's class from it's HTML" do
     @position.klass.should == "pcm-d"
   end
-  it "should extract it's left position from it's HTML" do
+  it "should extract it's left coordinate from it's HTML" do
     @position.coordinate("LEFT: ").should == 8
   end
-  it "should extract it's top position from it's HTML" do
+  it "should extract it's top coordinate from it's HTML" do
     @position.coordinate("TOP: ").should == 32
   end
   it "should calculate it's id from it's left and top position" do
