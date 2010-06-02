@@ -23,7 +23,7 @@ class Position < Stuff
   end
   def neighbours_type
     neighbours_coordinates.collect do |coordinates|
-      @positions[coordinates]
+      @positions[coordinates][0] if @positions[coordinates]
     end
   end
   def moves
