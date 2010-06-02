@@ -21,10 +21,12 @@ class Position < Stuff
   def neighbours_coordinates
     [[left, (top - 8)], [(left - 8), top], [(left + 8), top], [left, (top + 8)]]
   end
-  def neighbours_type
-    neighbours_coordinates.collect do |coordinates|
-      @positions[coordinates]
+  def neighbours
+    neighbours = {}
+    neighbours_coordinates.each do |coordinates|
+      neighbours[coordinates] = @positions[coordinates]
     end
+    neighbours
   end
   def neighbours_empty_or_not
     neighbours_coordinates.collect do |coordinates|
