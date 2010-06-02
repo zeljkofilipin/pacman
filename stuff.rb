@@ -276,7 +276,9 @@ class Stuff
       [432, 120] => 'pcm-d',
       [440, 120] => 'pcm-d',
       [448, 120] => 'pcm-e',
-      [280, 80] => 'pcm-f',
-      [280, 120] => 'special'}
+      [280, 80] => 'pcm-f'}
+
+      # ignoring missing positions for now
+      # [280, 120] => 'missing'}
   end
 end
