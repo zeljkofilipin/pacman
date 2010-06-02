@@ -7,6 +7,7 @@ class Position < Stuff
     super()
     @klass = klass
     @coordinates = coordinates
+    @neighbors_names = [:top, :left, :right, :down]
   end
 
   def left
@@ -22,10 +23,11 @@ class Position < Stuff
     [[left, (top - 8)], [(left - 8), top], [(left + 8), top], [left, (top + 8)]]
   end
   def neighbors
-    {:top => @positions[neighbors_coordinates[0]],
-      :left => @positions[neighbors_coordinates[1]],
-      :right => @positions[neighbors_coordinates[2]],
-      :down => @positions[neighbors_coordinates[3]]}
+    neighbors = {}
+    @neighbors_names.each_with_index do |neighbors_name, index|
+      neighbors[neighbors_name] = @positions[neighbors_coordinates[index]] if @positions[neighbors_coordinates[index]]
+    end
+    neighbors
   end
   def neighbors_empty_or_not
     neighbors_coordinates.collect do |coordinates|
