@@ -21,13 +21,13 @@ describe Position do
     @position.id.should == "pcm-d32-40"
   end
   it "should know it's neighbors coordinates" do
-    @position.neighbors_coordinates.should == {:top => [8, 24], :left => [0, 32], :right => [16, 32], :down => [8, 40]}
+    @position.neighbors_coordinates.should == {:up => [8, 24], :left => [0, 32], :right => [16, 32], :down => [8, 40]}
   end
   it "should know it's neighbors" do
-    @position.neighbors.should == [:top, :right]
+    @position.neighbors.should == [:up, :right]
   end
   it "should know if it's neighbors are eatable" do
-    @position.eatable_neighbors.should == [:top, :right]
+    @position.eatable_neighbors.should == [:up, :right]
   end
   it "should know is it eatable" do
     html = "\r\n<DIV class=pcm-d id=pcm-d32-40 style=\"LEFT: 8px; TOP: 32px\"></DIV>"

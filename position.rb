@@ -7,7 +7,7 @@ class Position < Stuff
     super()
     @klass = klass
     @coordinates = coordinates
-    @neighbors_names = [:top, :left, :right, :down]
+    @neighbors_names = [:up, :left, :right, :down]
   end
 
   def left
@@ -20,7 +20,7 @@ class Position < Stuff
     "pcm-d#{top}-#{left + 32}"
   end
   def neighbors_coordinates
-    {:top => [left, (top - 8)], :left => [(left - 8), top], :right => [(left + 8), top], :down => [left, (top + 8)]}
+    {:up => [left, (top - 8)], :left => [(left - 8), top], :right => [(left + 8), top], :down => [left, (top + 8)]}
   end
   def neighbors
     @neighbors_names.collect do |neighbors_name|
@@ -40,7 +40,7 @@ class Position < Stuff
     neighbors.collect do |neighbor|
       position = Position.new(neighbors_coordinates[neighbor], "fake-klass")
       require "watir"
-      neighbor if position.eatable?(Watir::Browser.attach(:url, //).div(:id => id).html)
+      neighbor if position.eatable?(Watir::Browser.attach(:url, //).div(:id => position.id).html)
     end
   end
 end
