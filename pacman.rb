@@ -34,7 +34,7 @@ class Pacman < Stuff
 
   # no specs
   # touches the browser
-  def move(browser)
+  def move
     if @debug
       puts "#{@step}:coordinates:#{coordinates.inspect}"
       puts "#{@step}:moves      :#{moves.inspect}"
@@ -53,7 +53,7 @@ class Pacman < Stuff
       puts "#{@step}:direction  :#{direction.inspect}" if @debug
 
       # move!
-      browser.send_keys "{#{direction.to_s.upcase}}"
+      $browser.send_keys "{#{direction.to_s.upcase}}"
     end
     if @debug
       puts "#{@step}:time       :#{Time.now - @time}"
@@ -62,8 +62,8 @@ class Pacman < Stuff
     @step += 1
     @time = Time.now
   end
-  def new_coordinates(browser)
-    @html = browser.div(:id => "actor0").html
+  def new_coordinates
+    @html = $browser.div(:id => "actor0").html
   end
   # random number from 0 to max
   def random_number(max)

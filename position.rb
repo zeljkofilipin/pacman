@@ -40,7 +40,7 @@ class Position < Stuff
     neighbors.collect do |neighbor|
       position = Position.new(neighbors_coordinates[neighbor], "fake-klass")
       require "watir"
-      neighbor if position.eatable?(Watir::Browser.attach(:url, //).div(:id => position.id).html)
+      neighbor if position.eatable?($browser.div(:id => position.id).html)
     end
   end
 end
