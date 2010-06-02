@@ -16,6 +16,9 @@ describe Position do
     @position.coordinate("TOP: ").should == 32
     @position.top.should == 32
   end
+  it "should extract it's coordinates from it's HTML" do
+    @position.coordinates.should == [8, 32]
+  end
   it "should calculate it's id from it's left and top position" do
     @position.id.should == "pcm-d32-40"
   end

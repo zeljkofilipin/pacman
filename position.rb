@@ -317,4 +317,7 @@ class Position
   def top
     coordinate("TOP: ")
   end
+  def coordinates
+    [left, top]
+  end
 end
