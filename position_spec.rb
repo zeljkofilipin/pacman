@@ -21,7 +21,7 @@ describe Position do
     @position.id.should == "pcm-d32-40"
   end
   it "should know it's neighbors coordinates" do
-    @position.neighbors_coordinates.should == [[8, 24], [0, 32], [16, 32], [8, 40]]
+    @position.neighbors_coordinates.should == {:top => [8, 24], :left => [0, 32], :right => [16, 32], :down => [8, 40]}
   end
   it "should know it's neighbors" do
     @position.neighbors.should == {:top => "pcm-e", :right => "pcm-d"}

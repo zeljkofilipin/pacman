@@ -20,12 +20,12 @@ class Position < Stuff
     "pcm-d#{top}-#{left + 32}"
   end
   def neighbors_coordinates
-    [[left, (top - 8)], [(left - 8), top], [(left + 8), top], [left, (top + 8)]]
+    {:top => [left, (top - 8)], :left => [(left - 8), top], :right => [(left + 8), top], :down => [left, (top + 8)]}
   end
   def neighbors
     neighbors = {}
-    @neighbors_names.each_with_index do |neighbors_name, index|
-      neighbors[neighbors_name] = @positions[neighbors_coordinates[index]] if @positions[neighbors_coordinates[index]]
+    @neighbors_names.each do |neighbors_name|
+      neighbors[neighbors_name] = @positions[neighbors_coordinates[neighbors_name]] if @positions[neighbors_coordinates[neighbors_name]]
     end
     neighbors
   end
