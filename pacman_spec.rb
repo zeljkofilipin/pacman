@@ -16,4 +16,7 @@ describe Pacman do
     @pacman.coordinate("TOP: ").should == 120
     @pacman.top.should == 120
   end
+  it "should know is it located on a position" do
+    @pacman.on_position.should == true
+  end
 end
