@@ -14,5 +14,6 @@ describe Pacman do
   end
   it "should extract top coordinate from it's HTML" do
     @pacman.coordinate("TOP: ").should == 120
+    @pacman.top.should == 120
   end
 end
