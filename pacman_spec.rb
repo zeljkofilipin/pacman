@@ -10,6 +10,7 @@ describe Pacman do
   end
   it "should extract left coordinate from it's HTML" do
     @pacman.coordinate("LEFT: ").should == 272
+    @pacman.left.should == 272
   end
   it "should extract top coordinate from it's HTML" do
     @pacman.coordinate("TOP: ").should == 120
