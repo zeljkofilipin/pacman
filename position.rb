@@ -5,6 +5,7 @@ class Position
     @top = extract_position_from_html("TOP: ")
     @id = calculate_id_from_positions
     @class = extract_class_from_html
+    @neighbours_coordinates = neighbours_coordinates
   end
   def extract_class_from_html
     @html.split("=")[1].split(" ")[0]
@@ -17,5 +18,10 @@ class Position
   end
   def neighbours_coordinates
     [[@left, (@top - 8)], [(@left - 8), @top], [(@left + 8), @top], [@left, (@top + 8)]]
+  end
+  def neighbours_type(positions)
+    @neighbours_coordinates.collect do |coordinates|
+      positions[coordinates]
+    end
   end
 end
