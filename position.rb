@@ -279,20 +279,20 @@ class Position
       [280, 80] => 'pcm-f'}
 
     @html = html
-    @left = extract_position_from_html("LEFT: ")
-    @top = extract_position_from_html("TOP: ")
-    @id = calculate_id_from_positions
-    @class = extract_class_from_html
+    @left = coordinate("LEFT: ")
+    @top = coordinate("TOP: ")
+    @id = id
+    @class = klass
     @neighbours_coordinates = neighbours_coordinates
     @neighbours_type = neighbours_type
   end
-  def extract_class_from_html
+  def klass
     @html.split("=")[1].split(" ")[0]
   end
-  def extract_position_from_html(position)
+  def coordinate(position)
     @html.split(position)[1].split("px")[0].to_i
   end
-  def calculate_id_from_positions
+  def id
     "pcm-d#{@top}-#{@left + 32}"
   end
   def neighbours_coordinates
