@@ -29,6 +29,10 @@ describe Position do
   it "should know it's moves" do
      @position.moves.should == [:up, :right]
   end
+  it "should know it's nonempty moves" do
+    pending
+    @position.nonempty_moves.should == [:up]
+  end
   it "should know is it empty" do
     html = "\r\n<DIV class=pcm-d id=pcm-d32-40 style=\"LEFT: 8px; TOP: 32px\"></DIV>"
     @position.empty?(html).should == false
