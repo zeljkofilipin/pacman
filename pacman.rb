@@ -1,15 +1,15 @@
 class Pacman
   def initialize(html)
     @html = html
-    @left = position("LEFT: ")
-    @top = position("TOP: ")
+    @left = coordinate("LEFT: ")
+    @top = coordinate("TOP: ")
     @coordinates = coordinates
   end
   def coordinates
-    [position("LEFT: "),
-      position("TOP: ")]
+    [coordinate("LEFT: "),
+      coordinate("TOP: ")]
   end
-  def position(position)
+  def coordinate(position)
     @html.split('"')[1].split(position)[1].split("px")[0].to_i
   end
 end
