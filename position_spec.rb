@@ -21,14 +21,14 @@ describe Position do
     @position.id.should == "pcm-d32-40"
   end
   it "should know it's neighbors coordinates" do
-    @position.neighbours_coordinates.should == [[8, 24], [0, 32], [16, 32], [8, 40]]
+    @position.neighbors_coordinates.should == [[8, 24], [0, 32], [16, 32], [8, 40]]
   end
   it "should know it's neighbors" do
-    @position.neighbours.should == {[8, 24] => "pcm-e", [0, 32] => nil, [16, 32] => "pcm-d", [8, 40] => nil}
+    @position.neighbors.should == {[8, 24] => "pcm-e", [0, 32] => nil, [16, 32] => "pcm-d", [8, 40] => nil}
   end
   it "should know if it's neighbors are empty or not" do
     pending
-    @position.neighbours_empty_or_not.should == [false, nil, false, nil]
+    @position.neighbors_empty_or_not.should == [false, nil, false, nil]
   end
   it "should know it's moves" do
     pending
