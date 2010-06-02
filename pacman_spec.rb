@@ -6,13 +6,12 @@ describe Pacman do
   end
 
   it "should extract it's position from it's HTML" do
-    @pacman.extract_positions_from_html.should == [272, 120]
+    @pacman.coordinates.should == [272, 120]
   end
   it "should extract left position from it's HTML" do
-    @pacman.extract_position_from_html("LEFT: ").should == 272
+    @pacman.position("LEFT: ").should == 272
   end
   it "should extract top position from it's HTML" do
-    @pacman.extract_position_from_html("TOP: ").should == 120
+    @pacman.position("TOP: ").should == 120
   end
 end
-
