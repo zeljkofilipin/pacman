@@ -26,6 +26,11 @@ class Position < Stuff
       @positions[coordinates][0] if @positions[coordinates]
     end
   end
+  def neighbours_empty_or_not
+    neighbours_coordinates.collect do |coordinates|
+      @positions[coordinates][1] if @positions[coordinates]
+    end
+  end
   def moves
     moves = []
     moves << :up if neighbours_type[0]
