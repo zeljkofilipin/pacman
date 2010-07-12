@@ -12,10 +12,10 @@ class Pacman < Stuff
     @html.split(position)[1].split("px")[0].to_i
   end
   def left
-    coordinate("LEFT: ")
+    coordinate("left: ")
   end
   def top
-    coordinate("TOP: ")
+    coordinate("top: ")
   end
   def coordinates
     [left, top]
@@ -53,7 +53,7 @@ class Pacman < Stuff
       puts "#{@step}:direction  :#{direction.inspect}" if @debug
 
       # move!
-      $browser.send_keys "{#{direction.to_s.upcase}}"
+      $browser.span(:id => "main").send_keys direction
     end
     if @debug
       puts "#{@step}:time       :#{Time.now - @time}"

@@ -40,7 +40,7 @@ class Position < Stuff
     eatable = []
     neighbors.each do |neighbor|
       position = Position.new(neighbors_coordinates[neighbor], "fake-klass")
-      require "watir"
+      require "watir-webdriver"
       eatable << neighbor if position.eatable?($browser.div(:id => position.id).html)
     end
     eatable
