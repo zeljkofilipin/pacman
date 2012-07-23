@@ -22,7 +22,11 @@ describe Pacman do
   it "should know it's moves" do
     @pacman.moves.should == [:up]
   end
+
+  # slow, touches browser
   it "should know it's yummy moves" do
-    @pacman.yummy_moves.should == [:up]
+    pending "refactor" do
+      @pacman.yummy_moves.should == [:up]
+    end
   end
 end

@@ -36,13 +36,15 @@ describe Position do
 
   # slow, requires browser to be opened and the game started
   it "should know if it's neighbors are eatable" do
-    require "watir"
-    $browser = Watir::Browser.attach(:url, //)
+    pending "refactor" do
+      require "watir"
+      $browser = Watir::Browser.attach(:url, //)
 
-    position = Position.new([8, 32], "pcm-d")
-    position.eatable_neighbors.should == [:up, :right]
+      position = Position.new([8, 32], "pcm-d")
+      position.eatable_neighbors.should == [:up, :right]
 
-    position = Position.new([272, 104], "pcm-d")
-    position.eatable_neighbors.should == [:left]
+      position = Position.new([272, 104], "pcm-d")
+      position.eatable_neighbors.should == [:left]
+    end
   end
 end
