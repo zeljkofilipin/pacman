@@ -1,4 +1,4 @@
-require "stuff"
+require_relative "stuff"
 
 class Pacman < Stuff
   def initialize(html)
@@ -40,7 +40,7 @@ class Pacman < Stuff
       puts "#{@step}:moves      :#{moves.inspect}"
       puts "#{@step}:yummy moves:#{yummy_moves.inspect}"
     end
-    
+
     # there will be no moves if you are not exactly on a position
     if moves != []
       if yummy_moves != []

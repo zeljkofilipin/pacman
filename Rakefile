@@ -6,7 +6,7 @@ task :default => :play
 require "rspec/core/rake_task"
 RSpec::Core::RakeTask.new
 
-desc "play the game"
+desc "play the game 3.0"
 task :play do
   require "watir-webdriver"
   browser = Watir::Browser.new
@@ -24,6 +24,12 @@ task :play do
     browser.send_keys direction[number]
     sleep 1
   end
+end
+
+desc "play the game 2.0"
+task :play2 do
+  require_relative "lib/game"
+  Game.new
 end
 
 desc "display positions html"

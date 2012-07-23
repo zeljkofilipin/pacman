@@ -1,8 +1,6 @@
 class Game
   def initialize
-    # require rubygems and watir
-    require "rubygems"
-    require "watir"
+    require "watir-webdriver"
 
     # open browser and go to google.com/pacman
     $browser = Watir::Browser.start "http://www.google.com/pacman/"
@@ -14,7 +12,7 @@ class Game
     7.times {$browser.send_keys "{TAB}"}
 
     # move pacman
-    require "pacman"
+    require_relative "pacman"
     pacman = Pacman.new($browser.div(:id => "actor0").html)
     while true do
       pacman.move
