@@ -128,8 +128,7 @@ def moving?(previous_horizontal, horizontal, previous_vertical, vertical)
   (previous_horizontal != horizontal) or (previous_vertical != vertical)
 end
 
-require "rubygems"
-require "watir"
+require "watir-webdriver"
 
 while true do
   puts "========================="
@@ -149,7 +148,7 @@ while true do
     2 => "up",
     3 => "left",
     4 => "down"}
-  
+
   # initialize fake stuff from previous step (that does not exist yet)
   previous_direction_number = 0
   previous_horizontal = 0

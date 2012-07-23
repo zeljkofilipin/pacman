@@ -6,7 +6,7 @@ task :default => :play
 require "rspec/core/rake_task"
 RSpec::Core::RakeTask.new
 
-desc "play the game 3.0"
+desc "play the game, pacman driver 3.0"
 task :play do
   require "watir-webdriver"
   browser = Watir::Browser.new
@@ -26,10 +26,15 @@ task :play do
   end
 end
 
-desc "play the game 2.0"
+desc "play the game, pacman driver 2.0"
 task :play2 do
   require_relative "lib/game"
   Game.new
+end
+
+desc "play the game, pacman driver 1.0"
+task :play1 do
+  require_relative "lib/pacman_random"
 end
 
 desc "display positions html"
