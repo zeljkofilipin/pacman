@@ -1,4 +1,5 @@
 source "http://rubygems.org"
+gem "nokogiri"
 gem "rake"
 gem "rspec"
 gem "watir-webdriver"
