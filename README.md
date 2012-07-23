@@ -1,130 +1,18 @@
-# about
+# Automating Google Pacman
 
-A simple Watir script to control Google Pacman. For now Pacman just
-randomly goes in all directions most of the time.
+The game is located at http://www.google.com/pacman/
 
-# videos
+Project repository is at https://github.com/zeljkofilipin/pacman
 
-http://www.youtube.com/watch?v=KzuTKQgoY3U
-http://www.youtube.com/user/zeljkofilipin#p/u
+Tested with Ruby 1.9.3p194.
 
-# prerequisites
+Install required RubyGems:
 
-Ruby (http://www.ruby-lang.org/en/) and Watir (http://watir.com/).
+    gem update --system
+    gem install bundler
+    bundle
 
-# environment
+Play the game with `bundle exec rake`.
+Run tests with `bundle exec rake spec`.
 
-Tested only on:
-- Windows 2003
-  - Internet Explorer 6
-  - Internet Explorer 7
-- Windows XP
-  - Internet Explorer 8
-
-It should work on other versions of Windows and Internet Explorer.
-
-# contact
-
-http://zeljkofilipin.com/contact/
-
-# installation
-
-Tested only on Windows XP Professional, Version 2002, Service Pack 3, fully
-patched.
-
-## install Ruby
-
-- log in as administrator (Ruby and Watir will probably not install correctly
-  otherwise)
-- download RubyInstaller
-  http://rubyforge.org/frs/download.php/69034/rubyinstaller-1.8.7-p249-rc2.exe
-- run it
-- leave all defaults except at `Installation Destination and Optional Tasks`
-  step check `Add Ruby executables to your PATH` and `Associate .rb and .rbw
-  files with this Ruby installation`
-
-### check if Ruby is installed (optional)
-
-- open Command Prompt
-- type:
-    ruby -v
-- output should be:
-    C:\Documents and Settings\Administrator>ruby -v
-    ruby 1.8.7 (2010-01-10 patchlevel 249) [i386-mingw32]
-
-## install Watir
-
-- open Command Prompt
-- type:
-    gem install watir --no-rdoc --no-ri
-- if you need local documentation, type (it will be slower to install):
-    gem install watir
-- it could take a few minutes, have a beer
-- output should be:
-    C:\Documents and Settings\Administrator>gem install watir --no-rdoc --no-ri
-    Successfully installed win32-api-1.4.6-x86-mingw32
-    Successfully installed windows-api-0.4.0
-    Successfully installed windows-pr-1.0.9
-    Successfully installed win32-process-0.6.2
-    Successfully installed xml-simple-1.0.12
-    Successfully installed json_pure-1.4.3
-    Successfully installed rubyforge-2.0.4
-    Successfully installed rake-0.8.7
-    Successfully installed hoe-2.6.0
-    Successfully installed s4t-utils-1.0.4
-    Successfully installed builder-2.1.2
-    Successfully installed user-choices-1.1.6.1
-    Successfully installed commonwatir-1.6.5
-    Successfully installed activesupport-2.3.8
-    Successfully installed firewatir-1.6.5
-    Successfully installed nokogiri-1.4.2-x86-mingw32
-    Successfully installed watir-1.6.5
-    17 gems installed
-
-### check if Watir is installed (optional)
-
-- open Command Prompt
-- type:
-    gem list watir
-- output should be:
-    C:\Documents and Settings\Administrator>gem list watir
-    *** LOCAL GEMS ***
-    watir (1.6.5)
-
-## download
-
-- downoad http://github.com/zeljkofilipin/pacman/raw/master/pacman_random.rb to
-  C:\Documents and Settings\Administrator
-- make sure the file name is pacman_random.rb
-
-# run
-
-- open Command Prompt
-- navigate to C:\Documents and Settings\Administrator
-- type:
-    pacman_random.rb
-- Internet Explorer should open, navigate to http://www.google.com/pacman/ and
-  Pacman should go randomly in all directions.
-- output should be something like this:
-
-    =========================
-    new game
-    =========================
-    *moving away from default position
-    >left
-    >up
-
-    ...
-
-    >right
-    *moving away from corner
-    !top right
-    >left
-    >down
-    !not moving
-    >left
-    !not moving
-    >right
-    =========================
-    score: 1310
-    =========================
+For more information see http://zeljkofilipin.com/play-google-pacman-with-watir/
