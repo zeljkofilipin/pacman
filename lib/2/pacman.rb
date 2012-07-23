@@ -24,11 +24,11 @@ class Pacman < Stuff
     true if @positions[coordinates]
   end
   def moves
-    require "position"
+    require_relative "position"
     @position = Position.new(coordinates, "fake-klass").neighbors
   end
   def yummy_moves
-    require "position"
+    require_relative "position"
     @position = Position.new(coordinates, "fake-klass").eatable_neighbors
   end
 

@@ -1,4 +1,4 @@
-require "stuff"
+require_relative "stuff"
 
 class Position < Stuff
   attr_reader :klass, :coordinates

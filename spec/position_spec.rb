@@ -1,4 +1,4 @@
-require "position"
+require_relative "../lib/2/position"
 
 describe Position do
   before(:each) do

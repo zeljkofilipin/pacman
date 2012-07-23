@@ -28,13 +28,13 @@ end
 
 desc "play the game, pacman driver 2.0"
 task :play2 do
-  require_relative "lib/game"
+  require_relative "lib/2/game"
   Game.new
 end
 
 desc "play the game, pacman driver 1.0"
 task :play1 do
-  require_relative "lib/pacman_random"
+  require_relative "lib/1/pacman"
 end
 
 desc "display positions html"

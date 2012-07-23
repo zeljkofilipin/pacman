@@ -1,4 +1,4 @@
-require "pacman"
+require_relative "../lib/2/pacman"
 
 describe Pacman do
   before(:each) do
