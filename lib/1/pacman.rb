@@ -128,10 +128,6 @@ def play
   url = "http://www.google.com/pacman/"
   require "watir-webdriver"
   browser = Watir::Browser.start url
-  while true do
-    puts "========================="
-    puts "new game"
-    puts "========================="
 
     directions = {
         1 => "right",
@@ -183,7 +179,7 @@ def play
       # go to direction
       go(browser, direction)
     end
-  end
+
   browser.close
 end
 
