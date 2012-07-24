@@ -1,6 +1,6 @@
 def go(browser, direction)
   output(direction)
-  browser.send_keys "{#{direction.upcase}}"
+  browser.send_keys direction.to_sym
 end
 def output(direction)
   puts ">#{direction}"
