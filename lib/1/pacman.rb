@@ -12,10 +12,10 @@ def pacman_visible?(browser)
   pacman_html(browser) !~ /LEFT: -62px/
 end
 def pacman_vertical_position(browser) # 8-top, 120-bottom
-  pacman_html(browser).split("TOP: ")[1].split("px")[0].to_i
+  pacman_html(browser).split("top: ")[1].split("px")[0].to_i
 end
 def pacman_horizontal_position(browser) # 8-left, 448-right
-  pacman_html(browser).split("LEFT: ")[1].split("px")[0].to_i
+  pacman_html(browser).split("left: ")[1].split("px")[0].to_i
 end
 def pacman_html(browser)
   browser.div(:id => "actor0").html
