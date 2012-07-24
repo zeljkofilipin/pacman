@@ -125,14 +125,13 @@ def moving?(previous_horizontal, horizontal, previous_vertical, vertical)
   (previous_horizontal != horizontal) or (previous_vertical != vertical)
 end
 def play
+  url = "http://www.google.com/pacman/"
   require "watir-webdriver"
-
+  browser = Watir::Browser.start url
   while true do
     puts "========================="
     puts "new game"
     puts "========================="
-    browser = Watir::Browser.start "http://www.google.com/pacman/"
-
 
     directions = {
         1 => "right",
@@ -147,7 +146,7 @@ def play
 
     # pacman is not visible when the game is over, but also when it dies, so do not
     # stop until there are not more pacmans left
-    while pacman_visible?(browser) or pacmans(browser) > 0 do
+    while browser.url == url do
       horizontal = pacman_horizontal_position(browser)
       vertical = pacman_vertical_position(browser)
 
@@ -184,8 +183,8 @@ def play
       # go to direction
       go(browser, direction)
     end
-    browser.close
   end
+  browser.close
 end
 
 play
