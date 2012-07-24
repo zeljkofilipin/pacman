@@ -173,7 +173,7 @@ while true do
 
       # to grab more pills, do not go in opposite direction of the current one
       # horizontal directions are odd numbers, vertical are even
-      # check if previos and current direction are both odd or even
+      # check if previous and current direction are both odd or even
       next if even?(direction_number) == even?(previous_direction_number)
     else
       puts "!not moving"
