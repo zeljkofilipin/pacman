@@ -18,7 +18,7 @@ def pacman_horizontal_position(browser) # 8-left, 448-right
   pacman_html(browser).split("left: ")[1].split("px")[0].to_i
 end
 def pacman_html(browser)
-  browser.div(:id => "actor0").html
+  browser.div(:id => "actor0").when_present.html
 end
 def score(browser)
   score = []
