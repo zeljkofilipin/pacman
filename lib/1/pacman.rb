@@ -133,9 +133,6 @@ def play
     puts "========================="
     browser = Watir::Browser.start "http://www.google.com/pacman/"
 
-    # start the game
-    browser.button(:value => "Insert Coin").click
-    sleep 1
 
     directions = {
         1 => "right",
