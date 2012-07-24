@@ -9,7 +9,7 @@ def pacmans(browser)
   browser.div(:id => "pcm-li").divs.size
 end
 def pacman_visible?(browser)
-  pacman_html(browser) !~ /LEFT: -62px/
+  pacman_html(browser) !~ /left: -62px/
 end
 def pacman_vertical_position(browser) # 8-top, 120-bottom
   pacman_html(browser).split("top: ")[1].split("px")[0].to_i
@@ -29,14 +29,14 @@ def score(browser)
 end
 def digit(browser, position)
   if digit_visible?(browser, position)
-  px = digit_html(browser, position).split("LEFT: -")[1].split("px")[0]
+  px = digit_html(browser, position).split("left: -")[1].split("px")[0]
   (px.to_i - 12)/10
   else
     nil
   end
 end
 def digit_visible?(browser, position)
-  digit_html(browser, position) !~ /TOP: -2px/
+  digit_html(browser, position) !~ /top: -2px/
 end
 def digit_html(browser, position)
   browser.div(:id => "pcm-sc-1-#{position}").html
