@@ -124,73 +124,76 @@ end
 def moving?(previous_horizontal, horizontal, previous_vertical, vertical)
   (previous_horizontal != horizontal) or (previous_vertical != vertical)
 end
+def play
+  require "watir-webdriver"
 
-require "watir-webdriver"
+  while true do
+    puts "========================="
+    puts "new game"
+    puts "========================="
+    browser = Watir::Browser.start "http://www.google.com/pacman/"
 
-while true do
-  puts "========================="
-  puts "new game"
-  puts "========================="
-  browser = Watir::Browser.start "http://www.google.com/pacman/"
+    # start the game
+    browser.button(:value => "Insert Coin").click
+    sleep 1
 
-  # start the game
-  browser.button(:value => "Insert Coin").click
-  sleep 1
+    directions = {
+        1 => "right",
+        2 => "up",
+        3 => "left",
+        4 => "down"}
 
-  directions = {
-    1 => "right",
-    2 => "up",
-    3 => "left",
-    4 => "down"}
+    # initialize fake stuff from previous step (that does not exist yet)
+    previous_direction_number = 0
+    previous_horizontal = 0
+    previous_vertical = 0
 
-  # initialize fake stuff from previous step (that does not exist yet)
-  previous_direction_number = 0
-  previous_horizontal = 0
-  previous_vertical = 0
+    # pacman is not visible when the game is over, but also when it dies, so do not
+    # stop until there are not more pacmans left
+    while pacman_visible?(browser) or pacmans(browser) > 0 do
+      horizontal = pacman_horizontal_position(browser)
+      vertical = pacman_vertical_position(browser)
 
-  # pacman is not visible when the game is over, but also when it dies, so do not
-  # stop until there are not more pacmans left
-  while pacman_visible?(browser) or pacmans(browser) > 0 do
-    horizontal = pacman_horizontal_position(browser)
-    vertical = pacman_vertical_position(browser)
+      move_away_from_default_position(browser) if at_default_positions?(horizontal, vertical)
 
-    move_away_from_default_position(browser) if at_default_positions?(horizontal, vertical)
+      move_away_from_corner(browser, horizontal, vertical) if in_the_corner?(horizontal, vertical)
 
-    move_away_from_corner(browser, horizontal, vertical) if in_the_corner?(horizontal, vertical)
+      # get random number from 1 to 4
+      direction_number = 1 + rand(4)
+      direction = directions[direction_number]
+      previous_direction = directions[previous_direction_number]
 
-    # get random number from 1 to 4
-    direction_number = 1 + rand(4)
-    direction = directions[direction_number]
-    previous_direction = directions[previous_direction_number]
+      next if at_bottom?(vertical) and direction == "down"
+      next if at_top?(vertical) and direction == "up"
+      next if at_far_left?(horizontal) and direction == "left"
+      next if at_far_right?(horizontal) and direction == "right"
 
-    next if at_bottom?(vertical) and direction == "down"
-    next if at_top?(vertical) and direction == "up"
-    next if at_far_left?(horizontal) and direction == "left"
-    next if at_far_right?(horizontal) and direction == "right"
+      if moving?(previous_horizontal, horizontal, previous_vertical, vertical)
+        next if direction == previous_direction
 
-    if moving?(previous_horizontal, horizontal, previous_vertical, vertical)
-      next if direction == previous_direction
+        # to grab more pills, do not go in opposite direction of the current one
+        # horizontal directions are odd numbers, vertical are even
+        # check if previous and current direction are both odd or even
+        next if even?(direction_number) == even?(previous_direction_number)
+      else
+        puts "!not moving"
+      end
 
-      # to grab more pills, do not go in opposite direction of the current one
-      # horizontal directions are odd numbers, vertical are even
-      # check if previous and current direction are both odd or even
-      next if even?(direction_number) == even?(previous_direction_number)
-    else
-      puts "!not moving"
+      # remember stuff from previous step
+      previous_horizontal = horizontal
+      previous_vertical = vertical
+      previous_direction_number = direction_number
+
+      # go to direction
+      go(browser, direction)
     end
 
-    # remember stuff from previous step
-    previous_horizontal = horizontal
-    previous_vertical = vertical
-    previous_direction_number = direction_number
+    puts "========================="
+    puts "score: #{score(browser)}"
+    puts "========================="
 
-    # go to direction
-    go(browser, direction)
+    browser.close
   end
-
-  puts "========================="
-  puts "score: #{score(browser)}"
-  puts "========================="
-
-  browser.close
 end
+
+play
