@@ -1,6 +1,8 @@
 def go(browser, direction)
   output(direction)
   browser.send_keys direction.to_sym
+rescue => e
+  p "!#{e}"
 end
 def output(direction)
   puts ">#{direction}"
