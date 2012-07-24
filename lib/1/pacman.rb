@@ -184,11 +184,6 @@ def play
       # go to direction
       go(browser, direction)
     end
-
-    puts "========================="
-    puts "score: #{score(browser)}"
-    puts "========================="
-
     browser.close
   end
 end
